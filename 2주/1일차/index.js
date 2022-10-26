@@ -1,0 +1,5 @@
+const student = require('./elice');
+const jsonData = require("./data.json");
+
+console.log(student);
+console.log(jsonData);

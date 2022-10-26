@@ -1,0 +1,14 @@
+.my-div {
+    text-align: right;
+    padding: 0px 30px;
+}
+
+/* 중첩 선택자로 선택 */
+.table #table-id #dtit:hover {
+    cursor: pointer;
+}
+
+/* 다이렉트 */
+#dtit:hover {
+    background-color: gold;
+}

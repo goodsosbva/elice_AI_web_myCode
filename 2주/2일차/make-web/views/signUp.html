@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <title>signUp page</title>
+  </head>
+  <body>
+    <h1>signUp page</h1>
+    <a href="/user/login">로그인</a>
+    <a href="/">홈</a>
+    <br />
+    <br />
+    <form id="signUpForm">
+      <input
+        type="text"
+        id="id"
+        name="id"
+        placeholder="please enter a your id"
+      />
+      <br />
+      <br />
+      <input
+        type="password"
+        id="pwd"
+        name="pwd"
+        placeholder="please enter a your password"
+      />
+      <br />
+      <br />
+      <input
+        type="password"
+        id="rePwd"
+        name="rePwd"
+        placeholder="please enter a your password"
+      />
+      <br />
+      <br />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="enter your name sir~"
+      />
+      <br />
+      <br />
+      <input type="button" value="signUp" onclick="sendData()" />
+    </form>
+  </body>
+
+  <script>
+    // 값들을 가죠오는데 폼을 가져와서 사용.
+    // documet.getElementById("~")
+    // let name = document.getElementById("signupform").name.value;
+    const id = document.getElementById("id");
+    const pwd = document.getElementById("pwd");
+    const rePwd = document.getElementById("rePwd");
+    const name = document.getElementById("name");
+
+    // 각각 가져온 데이트를 ""확인을 하고, 반약 빈 칸이라면 alert, 리턴
+    // 비밀번호와 비빌번호 확인잉 맞지 않다면 alert, 리턴
+    function sendData() {
+      if (id.value === "") {
+        console.log("아이디 입력하셈.");
+        return;
+      }
+      if (pwd.value === "") {
+        console.log("비번 입력하셈.");
+        return;
+      }
+      if (rePwd.value === "") {
+        console.log("확인 비번 입력하셈.");
+        return;
+      }
+      if (name.value === "") {
+        console.log("이름 입력하셈.");
+        return;
+      }
+
+      // ajax를 사용해서 서버에 데이터를 전송
+      $.ajax({
+        type: "POST",
+        data: {
+          id: id.value,
+          pwd: pwd.value,
+          rePwd: rePwd.value,
+          name: name.value,
+        },
+        url: "http://localhost:7777/user/signUp",
+        // dataType:"json",
+        success: (res) => {
+          console.log(res);
+          alert(res.message);
+          location.href = "/user/login";
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
+    }
+  </script>
+</html>

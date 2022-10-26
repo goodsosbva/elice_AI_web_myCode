@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>delete 페이지</h1>
+    <a href="/">홈</a>
+    <a href="/user/signUp">회원가입</a>
+    <br>
+    <br>
+    <form id="deleteForm">
+        <input type="text" id="id" name="id" placeholder="아이디를 입력해주세요.">
+        <input type="password" id="pwd" name="pwd" placeholder="비밀번호를 입력해주세요.">
+        <input type="button" value="삭제" onclick="onClickDeleteButton()">
+    </form>
+</body>
+<script>
+    let deleteForm = document.getElementById("deleteForm");
+    console.log(deleteForm);
+
+    let onClickDeleteButton = () => {
+        // id랑 pwd는 name이랑 일치해야함!
+        let {id, pwd} = deleteForm;
+
+        if (id.value === "") {
+            alsert("id를 입력!!");
+            return;
+        }
+
+        if (pwd.value === "") {
+            alert("pw를 입력!!");
+            return false;
+        }
+
+        $.ajax({
+            url:'/user/delete',
+            type:'POST',
+            data:{
+                id: id.value,
+                pwd: pwd.value
+            },
+            dataType: 'JSON',
+            success: (res) => {
+                console.log(res);
+            }
+        })
+    }
+    
+
+
+
+</script>
+
+</html>

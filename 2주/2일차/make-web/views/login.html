@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login page</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>login page</h1>
+    <a href="/">홈</a>
+    <a href="/user/signUp">회원 가입</a>
+    <br />
+    <br />
+    <form id="loginForm">
+      <input
+        type="text"
+        id="id"
+        name="id"
+        placeholder="please enter a your id"
+      />
+      <br />
+      <input
+        type="password"
+        id="pwd"
+        name="pwd"
+        placeholder="please enter a your password"
+      />
+      <input type="button" value="login" onclick="sendData()" />
+    </form>
+  </body>
+
+  <script>
+    const id = document.getElementById("id");
+    const pwd = document.getElementById("pwd");
+
+    function sendData() {
+      if (id.value === "") {
+        console.log("아이디 입력하셈.");
+        return;
+      }
+      if (pwd.value === "") {
+        console.log("비번 입력하셈.");
+        return;
+      }
+
+      // ajax를 사용해서 서버에 데이터를 전송
+      $.ajax({
+        type: "POST",
+        data: {
+          id: id.value,
+          pwd: pwd.value,
+        },
+        url: "http://localhost:7777/user/login",
+        // dataType:"json",
+        success: (res) => {
+          console.log(res);
+          alert(res.message);
+          location.href = "/";
+        },
+        error: (e) => {
+          console.log(e);
+          location.href = "/user/login";
+        },
+      });
+    }
+  </script>
+</html>

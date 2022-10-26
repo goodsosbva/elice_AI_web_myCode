@@ -1,0 +1,27 @@
+카카오 로그인 지금까지 한 거 필기 공유합니다: 
+
+내 어플리케이션>하나 만들기
+
+플래폼>웹 플랫폼 등록
+
+사이트 도메인에 아래의 두 주소를 등록
+http://localhost:3000/
+http://localhost:8080/
+
+웹쪽에 사이트 도메인 2개가 있으면 됨.
+
+동의항목
+-닉네임: 필수/ 이유: 연습
+-카카오계정(이메일): 선택동의
+
+플랫폼
+카카오 로그인 사용시 Redirect URI를 등록해야합니다. > 등록하러 가기
+카카오 로그인 활성화 설정 상태 ON
+Redirect URI 등록: http://localhost:3000/oauth/kakao/callback
+카카오가 요 URI로 응답을 해준다
+
+문서>Rest api > 카카오 로그인 리소스 보기> 축약형 Korean & Middle 다운로드
+
+다운로드한 이미지를 client> src>img에 넣기
+
+import kakaoLogin from "./../img/kakao_login_medium.png";

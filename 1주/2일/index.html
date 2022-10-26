@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>치킨<input type="checkbox" class="box" name="box" value="치킨" /></li>
+      <li>피자<input type="checkbox" class="box" name="box" value="피자" /></li>
+      <li>족발<input type="checkbox" class="box" name="box" value="족발" /></li>
+    </ul>
+    <input type="button" id="btn" value="확인" />
+    <div id="result">
+    <p>결과값</p>
+    </div>
+    <script>
+      const arr3 = [1, 2, 3, 4, 5];
+
+      window.onload = () => {
+        const arr1 = document.querySelectorAll("input[name='box']");
+        const btn = document.getElementById("btn");
+        // const arr2 = document.getElementsByName("box");
+
+        // for(let i = 0; i < arr1.length; i++) {
+        //     console.log(`i번째 배열: ${arr1[i]}`);
+        // }
+
+        // // map을 사용하는 방법
+        // // 동기식 작동을 해서 안된다..?
+        // arr3.map((e) => {
+        //     console.log(e);
+        // })
+
+        // document.getElementById('result').innerHTML = "<p>9월 14일</p><ul><li>helloWorld!</li></ul>";
+
+        // 2. checked 속성을 체크합니다.
+        // const is_checked = checkbox.checked;
+        // aid.addEventListener("click", onaFunction);
+        function btnClick() {
+          // document.getElementById("result").removeChild(document.getElementById("result").firstChild);
+          var str = "";
+          for (let i = 0; i < arr1.length; i++) {
+            const isChecked = arr1[i].checked;
+            if (isChecked) {
+              // const ul = document.createElement('ul');
+              // document.getElementById("result").appendChild(ul);
+              // document.getElementById("result").innerHTML = `<p>${arr1[i].value}</p></br>`;
+              str += arr1[i].value + "</br>";
+              
+            }
+            document.getElementById("result").innerHTML = str;
+          }
+        }
+
+        btn.addEventListener("click", btnClick);
+      };
+    </script>
+  </body>
+</html>

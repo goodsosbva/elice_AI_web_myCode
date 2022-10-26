@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <p>로그인</p>
+    <input type="text" id="id" name="id" placeholder="id" />
+    <p>비밀번호</p>
+    <input type="password" id="pwd" name="password" placeholder="password" />
+    <input type="button"  value="login" onclick="sendData()" />
+  </body>
+
+  <script>
+    let id = document.getElementById("id");
+    let pwd = document.getElementById("pwd");
+
+    function sendData() {
+        console.log(id.value);
+        if(id.value === ""){
+            alert("please write your id!");
+            id.focus();
+            return;
+        }
+
+        if(pwd.value === ""){
+            alert("please write your pwd!");
+            pwd.focus();
+            return;
+        }
+
+        $.ajax({
+            url:"http://localhost:7777/login",
+            method:"GET",
+            data: {
+                id: id.value,
+                pwd: pwd.value
+            },
+            dataType: "json"
+
+        }).done(function (res) {
+            console.log(res);
+            alert(res.message);
+        })
+
+    }
+  </script>
+</html>
